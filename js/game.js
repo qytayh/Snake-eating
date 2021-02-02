@@ -14,11 +14,19 @@ class Game{
         this.stop()
         this.timer = setInterval(()=>{
             this.snake.move() //蛇移动
+            if(this.isEat()){
+                this.snake.eatFood();
+                this.food.create();
+            }
             this.map.clearData()
             this.map.setData(this.snake.data)
             this.map.setData(this.food.data)
             this.map.render()
         },this.interval)
+    }
+    //判断是否吃到事物
+    isEat(){
+        return (this.snake.data[0].x===this.food.data.x)&&(this.snake.data[0].y===this.food.data.y)
     }
     start(){
         if(this.timer) return
