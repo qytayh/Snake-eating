@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/map.js"></script>
+    <script src="./js/food.js"></script>
+    <script src="./js/snake.js"></script>
+    <script src="./js/game.js"></script>
+    <style> 
+        #map{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+   
+</body>
+<script >
+    let ele = document.querySelector("#map")
+    let game = new Game(ele,10)
+    document.onclick=function(){
+        game.start()
+    }
+</script>
+</html>
