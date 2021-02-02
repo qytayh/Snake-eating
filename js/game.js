@@ -1,8 +1,11 @@
 class Game {
     constructor(ele, rect) {
         this.map = new Map(ele, rect)
-        this.food = new Food(this.map)
-        this.snake = new Snake(this.map, this.food)
+        this.food = new Food(this.map.cells,this.map.rows)
+        this.snake = new Snake()
+        this.map.setData(this.snake.data)
+        this.createFood()
+        this.map.setData(this.food.data)
         this.map.render()
         this.timer = 0;
         this.grade = 0
@@ -11,17 +14,23 @@ class Game {
         this.keyDown = this.keyDown.bind(this)
         this.control()
     }
+
+    render(){
+        this.map.clearData()
+        this.map.setData(this.snake.data)
+        this.map.setData(this.food.data)
+        this.map.render()
+    }
     //控制移动
     move() {
         this.stop()
         this.timer = setInterval(() => {
             this.snake.move() //蛇移动
-            this.map.clearData()
             if (this.isEat()) {
                 this.grade++
                 this.changeGrade(this.grade);
                 this.snake.eatFood();
-                this.food.create();
+                this.createFood()
                 this.interval = this.interval * .9
                 this.stop();
                 this.start();
@@ -30,9 +39,7 @@ class Game {
                 this.over()
                 return
             }
-            this.map.setData(this.snake.data)
-            this.map.setData(this.food.data)
-            this.map.render()
+            this.render()
         }, this.interval)
     }
     //判断是否吃到事物
@@ -52,6 +59,12 @@ class Game {
         }else{
             this.pause=true
             this.stop()
+        }
+    }
+    createFood() {
+        this.food.create()
+        if(this.map.include(this.food.data)){
+            this.createFood()
         }
     }
     //是否结束

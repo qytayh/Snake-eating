@@ -1,5 +1,5 @@
 class Snake {
-    constructor(map, food) {
+    constructor() {
         this.data = [{
                 x: 6,
                 y: 4,
@@ -26,10 +26,7 @@ class Snake {
                 color: "white"
             }
         ]
-        this.map = map
-        this.food = food
         this.direction = "right"
-        this.map.setData(this.data)
     }
     //移动
     move() {

@@ -1,19 +1,15 @@
 class Food{
-    constructor(map,colors=["red","blue","yellow","pink"]){
-        this.map=map
+    constructor(cells=10,rows=10,colors=["red","blue","yellow","pink"]){
+        this.cells=cells
+        this.rows=rows
         this.colors=colors
         this.data = null
         this.create()
     }
     create() {
-        let x = Math.floor(Math.random()*this.map.cells)
-        let y = Math.floor(Math.random()*this.map.rows)
-        let color = this.colors[parseInt(Math.random(this.colors.length))]
+        let x = Math.floor(Math.random()*this.cells)
+        let y = Math.floor(Math.random()*this.rows)
+        let color = this.colors[parseInt(Math.random()*this.colors.length)]
         this.data = {x,y,color}
-        if(this.map.include(this.data)){
-            this.create()
-        }else{
-            this.map.setData(this.data)
-        }
     }
 }
