@@ -31,7 +31,7 @@
     let parseButton = document.querySelector('.stop')
     function buttonChange(){
         let buttonGroup = document.querySelector('.buttonGroup')
-        if(game.isOver()){
+        if(!game.isOver()){
             buttonGroup.innerHTML=`<button class="start" onclick="buttonChange()">点击开始</button>`
             game.setStatues()
         }else{
