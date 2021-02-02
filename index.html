@@ -18,14 +18,27 @@
     </style>
 </head>
 <body>
+    <div class="buttonGroup">
+       
+    </div>
+    <div class="grade">分数：0</div>
     <div id="map"></div>
-   
 </body>
 <script >
     let ele = document.querySelector("#map")
     let game = new Game(ele,10)
-    document.onclick=function(){
-        game.start()
+    let startButton = document.querySelector('.start')
+    let parseButton = document.querySelector('.stop')
+    function buttonChange(){
+        let buttonGroup = document.querySelector('.buttonGroup')
+        if(game.isOver()){
+            buttonGroup.innerHTML=`<button class="start" onclick="buttonChange()">点击开始</button>`
+            game.setStatues()
+        }else{
+            buttonGroup.innerHTML=`<button class="stop" onclick="buttonChange()">暂停游戏</button>`
+            game.setStatues()
+        }
     }
+    buttonChange()
 </script>
 </html>
