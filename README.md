@@ -1,5 +1,7 @@
 # 贪吃蛇
 
+[在线地址](https://qytayh.github.io/Snake-eating/index.html)
+
 ## 模块划分
 
 ### Map 地图类
