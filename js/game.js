@@ -61,12 +61,14 @@ class Game {
         if (this.snake.data[0].x < 0 || this.snake.data[0].x >= this.map.cells ||
             this.snake.data[0].y < 0 ||
             this.snake.data[0].y >= this.map.rows) {
-            return true;
+                this.gameOver()
+                return true;
         }
         //判断是否撞到自己
         for(let i=1;i<this.snake.data.length;i++){
             if(this.snake.data[0].x===this.snake.data[i].x&&
                 this.snake.data[0].y===this.snake.data[i].y){
+                    this.gameOver()
                     return true
                 }
         }
@@ -92,6 +94,10 @@ class Game {
                 this.snake.changeDir("bottom");
                 break;
         }
+    }
+    //游戏结束提示
+    gameOver(){ 
+        alert(`游戏结束，得分为：${this.grade}`)
     }
     //控制器
     control() {
